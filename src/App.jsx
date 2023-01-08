@@ -12,29 +12,30 @@ import {
   Navigate,
 } from "react-router-dom";
 import Success from "./pages/Success";
+import { useSelector } from "react-redux";
 
 const App = () => {
-  const user = false;
+  const user = useSelector((state) => state.user.currentUser);
   const router = createBrowserRouter([
     {
       path: "/",
-      element: !user ? <Navigate to="/login" /> : <Home />,
+      element: <Home />,
     },
     {
       path: "/products/:category",
-      element: user ? <Navigate to="/login" /> : <ProductList />,
+      element: <ProductList />,
     },
     {
       path: "/product/:id",
-      element: user ? <Navigate to="/login" /> : <Product />,
+      element: <Product />,
     },
     {
       path: "/cart",
-      element: user ? <Navigate to="/login" /> : <Cart />,
+      element: <Cart />,
     },
     {
       path: "/success",
-      element: user ? <Navigate to="/login" /> : <Success />,
+      element: <Success />,
     },
     {
       path: "/login",

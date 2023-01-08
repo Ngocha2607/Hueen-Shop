@@ -23,8 +23,8 @@ const Products = (props) => {
       try {
         const res = await axios.get(
           cat
-            ? `http://localhost:5000/api/products?category=${cat}`
-            : "http://localhost:5000/api/products"
+            ? `https://hueen-shop-api.vercel.app/api/products?category=${cat}`
+            : "https://hueen-shop-api.vercel.app/api/products"
         );
         setProducts(res.data);
       } catch (error) {
@@ -65,7 +65,9 @@ const Products = (props) => {
     <Container>
       {cat
         ? filteredProducts.map((item) => <Product item={item} key={item.id} />)
-        : products.slice(0,8).map((item) => <Product item={item} key={item.id} />)}
+        : products
+            .slice(0, 8)
+            .map((item) => <Product item={item} key={item.id} />)}
     </Container>
   );
 };
